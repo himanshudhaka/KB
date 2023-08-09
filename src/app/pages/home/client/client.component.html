@@ -1,4 +1,7 @@
-<div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+<div
+  *ngIf="loading"
+  class="spinner-border flex justify-center items-center spinner-border-sm"
+></div>
 
 <div
   class="flex w-11/12 mt-5 rounded-lg overflow-hidden shadow-md mx-auto flex-col"
@@ -44,14 +47,16 @@
         <p class="text-sm text-gray-700">
           items per page
           <span class="font-medium"> {{ per_page }} </span>
-          <span class="font-medium">{{ current_page * per_page - 19 }}</span>
-          of <span class="font-medium">{{ per_page }}</span>
+          <span class="font-medium">{{ per_page }}</span>
+          of <span class="font-medium">{{ total }}</span>
         </p>
       </div>
     </div>
     <div class="flex inline-block flex-1 justify-end">
       <button
         class="relative inline-flex items-center border-none text-sm font-medium text-gray-700 hover:bg-gray-50"
+        (click)="onClicked(current_page - 1)"
+        [disabled]="pre"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
           <path
@@ -61,6 +66,8 @@
       </button>
       <button
         class="relative ml-3 inline-flex items-center border-none text-sm font-medium text-gray-700 hover:bg-gray-50"
+        (click)="onClicked(current_page + 1)"
+        [disabled]="next"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
           <path

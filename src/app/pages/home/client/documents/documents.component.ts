@@ -10,6 +10,7 @@ import { ClientService } from 'src/app/services/client.service';
   styleUrls: ['./documents.component.scss'],
 })
 export class DocumentsComponent {
+  loading = false;
   docs: any[] = [];
   @Input() id: any;
   months: string[] = [
@@ -62,11 +63,13 @@ export class DocumentsComponent {
   }
 
   upload(id: any) {
+    this.loading = true;
     this.clientService
       .uploaddoc(id)
       .pipe(first())
       .subscribe((doc) => {
         console.log(doc);
+        this.loading = false;
       });
   }
 }

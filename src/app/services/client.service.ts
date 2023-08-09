@@ -7,8 +7,7 @@ import { AuthService } from './auth.service';
 export class ClientService {
   private token = this.auth.user$;
   // private headers = { Authorization: this.token };
-  private apiUrl: string =
-    'http://hmaapi.kilobytetech.com/users?pageNo=1&size=20';
+  private apiUrl: string = 'http://hmaapi.kilobytetech.com/users';
   tokendd = JSON.parse(localStorage.getItem('user') || 'hi');
   header = new HttpHeaders().set('Authorization', this.tokendd.token);
   // console.log(header);
@@ -22,8 +21,10 @@ export class ClientService {
   };
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-  getAll() {
-    return this.http.get<any>(`${this.apiUrl}`, { headers: this.header });
+  getAll(page: any) {
+    return this.http.get<any>(`${this.apiUrl}/?pageNo=${page}&size=20`, {
+      headers: this.header,
+    });
   }
   oncall(id: any) {
     return this.http.get<any>(
