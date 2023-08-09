@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../src/app/pages/home/document/document.component.scss"
+    ],
+    "names": [],
+    "file": "document.component.css"
+}

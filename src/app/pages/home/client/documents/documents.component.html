@@ -1,0 +1,30 @@
+<div class="px-4 py-4">
+  <div class="grid">
+    <div class="text-gray-300" *ngFor="let doc of docs; index as i">
+      {{ months[i] }}
+      <div *ngIf="doc.length > 0; else none" class="grid grid-cols-5 gap-4">
+        <div *ngFor="let d of doc" class="col-span-1">
+          <div class="max-w-sm p-3 rounded overflow-hidden shadow-sm">
+            <div class="flex justify-between text-black">
+              <div class="font-bold mb-2 max-w-1/2">
+                <h3>{{ d.category }}</h3>
+                <p class="font-light text-sm">{{ d.type }}</p>
+              </div>
+              <div>
+                <button
+                  class="border rounded bg-green-500 p-2 text-white"
+                  (click)="upload(d._id)"
+                >
+                  Upload
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #none>
+        <p>No documents available</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
